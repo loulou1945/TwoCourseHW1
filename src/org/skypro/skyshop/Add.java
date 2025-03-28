@@ -14,6 +14,7 @@ public class Add {
         Product lime = new Product("Lime", 190);
 
         ProductBasket firstBasket = new ProductBasket();
+        ProductBasket secondBasket = new ProductBasket();
 
         firstBasket.addProduct(apple);
         firstBasket.addProduct(kiwi);
@@ -23,12 +24,12 @@ public class Add {
         firstBasket.addProduct(apricot);
 
         firstBasket.printBasket();
-        System.out.println("Общая стоимость корзины: " + firstBasket.printBasketCost());
-        firstBasket.findProductByName("Apple");
-        firstBasket.findProductByName("Cherry");
-        firstBasket.cleanerBasket();
+        System.out.println("Общая стоимость корзины: " + firstBasket.getBasketCost());
+        firstBasket.existsProductByName("Apple");
+        firstBasket.existsProductByName("Cherry");
+        firstBasket.clearBasket();
         firstBasket.printBasket();
-        firstBasket.printBasketCost();
-        firstBasket.findProductByName("Apple");
+        firstBasket.getBasketCost();
+        firstBasket.existsProductByName("Apple");
     }
 }
