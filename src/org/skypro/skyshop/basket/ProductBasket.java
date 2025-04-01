@@ -36,7 +36,7 @@ public class ProductBasket {
         int countProduct = 0;
         int countSpecialProduct = 0;
         for (Product product : products) {
-            if (product != null && (!product.isSpecial() || product.isSpecial())) {
+            if (product != null) {
                 countProduct++;
                 System.out.println(product);
                 if (product.isSpecial()) {
