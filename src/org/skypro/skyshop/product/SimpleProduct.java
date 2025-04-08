@@ -22,4 +22,10 @@ public class SimpleProduct extends Product{
     public String toString() {
         return getProductName() + ": " + getPrice();
     }
+
+    @Override
+    public String getStringRepresentation() {
+
+        return null;
+    }
 }

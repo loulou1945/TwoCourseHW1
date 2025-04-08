@@ -28,4 +28,10 @@ public class DiscountedProduct extends Product {
     public String toString() {
         return getProductName() + ": " + getPrice() + " (" + getDiscount() + "%)";
     }
+
+    @Override
+    public String getStringRepresentation() {
+
+        return null;
+    }
 }
