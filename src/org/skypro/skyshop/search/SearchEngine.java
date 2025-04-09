@@ -1,11 +1,11 @@
 package org.skypro.skyshop.search;
 
-public class SearchEngine implements Searchable {
+public class SearchEngine {
     public int capacity;
     public Searchable[] searchables;
     Searchable[] result = new Searchable[5];
 
-    public SearchEngine(int capacity) {
+    public SearchEngine (int capacity) {
         
         this.capacity = capacity;
         this.searchables = new Searchable[capacity];
@@ -43,20 +43,5 @@ public class SearchEngine implements Searchable {
             }
         }
 
-    }
-
-    @Override
-    public String getSearchTerm() {
-        return "";
-    }
-
-    @Override
-    public String getTypeContent() {
-        return "";
-    }
-
-    @Override
-    public String getStringRepresentation() {
-        return "";
     }
 }
