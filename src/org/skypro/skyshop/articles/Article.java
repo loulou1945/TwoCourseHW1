@@ -1,6 +1,6 @@
 package org.skypro.skyshop.articles;
 
-import org.skypro.skyshop.search.Searchable;
+import org.skypro.skyshop.Searchable;
 
 public class Article implements Searchable {
     private final String titleArticle;

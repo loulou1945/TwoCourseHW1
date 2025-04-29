@@ -1,6 +1,6 @@
 package org.skypro.skyshop.product;
 
-import org.skypro.skyshop.search.Searchable;
+import org.skypro.skyshop.Searchable;
 
 public abstract class Product implements Searchable {
     public abstract boolean isSpecial();
@@ -8,6 +8,9 @@ public abstract class Product implements Searchable {
     private final String productName;
 
     public Product(String productName) {
+        if (productName.isBlank()) {
+            throw new IllegalArgumentException("Неправильное имя продукта");
+        }
         this.productName = productName;
     }
 

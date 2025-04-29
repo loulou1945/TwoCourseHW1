@@ -1,12 +1,15 @@
 package org.skypro.skyshop.search;
 
+import org.skypro.skyshop.Searchable;
+import org.skypro.skyshop.search.BestResultNotFound;
+
 public class SearchEngine {
     public int capacity;
     public Searchable[] searchables;
     Searchable[] result = new Searchable[5];
 
-    public SearchEngine (int capacity) {
-        
+    public SearchEngine(int capacity) {
+
         this.capacity = capacity;
         this.searchables = new Searchable[capacity];
 
@@ -18,12 +21,12 @@ public class SearchEngine {
         for (Searchable searchable : searchables) {
             if (searchable == null) continue;
             if (searchable.getSearchTerm().contains(term)) {
-                result [count++] = searchable;
+                result[count++] = searchable;
                 if (count == 5) break;
             }
         }
         return result;
-        
+
     }
 
     public void printResult() {
@@ -42,6 +45,40 @@ public class SearchEngine {
                 break;
             }
         }
-
     }
+
+    public Searchable foundBestResult(String search) throws BestResultNotFound {
+        Searchable bestResult = null;
+        int maxFound = 0;
+        int score;
+        for (Searchable searchable : searchables) {
+            if (searchable == null) continue;
+            if (searchable.getSearchTerm().contains(search)) {
+                String str = searchable.getSearchTerm();
+                score = resultMaxFound(str, search);
+                if (score > maxFound) {
+                    maxFound = score;
+                    bestResult = searchable;
+                }
+            }
+        }
+        if (bestResult == null) {
+            throw new BestResultNotFound("Объект не найден");
+        }
+        return bestResult;
+    }
+
+
+    private int resultMaxFound(String str, String subStr) {
+        int score = 0;
+        int index = 0;
+        int indexSubStr = str.indexOf(subStr, index);
+        while (indexSubStr != -1) {
+            score++;
+            index = indexSubStr + subStr.length();
+            indexSubStr = str.indexOf(subStr, index);
+        }
+        return score;
+    }
+
 }

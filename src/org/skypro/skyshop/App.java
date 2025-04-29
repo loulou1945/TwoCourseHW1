@@ -6,14 +6,14 @@ import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.search.BestResultNotFound;
 import org.skypro.skyshop.search.SearchEngine;
-import org.skypro.skyshop.search.Searchable;
 
 import java.util.Arrays;
 
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws BestResultNotFound {
 
         //Список продуктов
         Product apple = new FixPriceProduct("Apple");
@@ -22,6 +22,24 @@ public class App {
         Product avocado = new SimpleProduct("Avocado", 210);
         Product apricot = new DiscountedProduct("Apricot", 170, 23);
         Product lime = new FixPriceProduct("Lime");
+
+        //Создание продуктов и обработка IllegalArgumentException
+        try {
+            DiscountedProduct cucumber = new DiscountedProduct("Cucumber", 190, 130);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            SimpleProduct potato = new SimpleProduct("Potato", -120);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            FixPriceProduct carrot = new FixPriceProduct(" ");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
         //Список статей
         Article appleArticle1 = new Article("Apple", "Яблоко не тонет в воде, так как на четверть состоит из воздуха");
@@ -40,6 +58,15 @@ public class App {
         engine.add(appleArticle1);
         engine.add(bananaArticle);
         engine.add(appleArticle2);
+
+        //Реализация поика самого подходящего элемента
+        System.out.println(engine.foundBestResult("Apple"));
+        try {
+            System.out.println(engine.foundBestResult("Tomato"));
+        } catch (BestResultNotFound e) {
+            System.out.println(e);
+        }
+
 
         //Реализация метода search
         System.out.println("Реализация интерфесов");
