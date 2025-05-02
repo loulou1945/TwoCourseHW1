@@ -1,28 +1,19 @@
 package org.skypro.skyshop.search;
 
 import org.skypro.skyshop.Searchable;
-import org.skypro.skyshop.search.BestResultNotFound;
+
+import java.util.LinkedList;
 
 public class SearchEngine {
-    public int capacity;
-    public Searchable[] searchables;
-    Searchable[] result = new Searchable[5];
+    LinkedList<Searchable> searchables = new LinkedList<>();
+    LinkedList<Searchable> result = new LinkedList<>();
 
-    public SearchEngine(int capacity) {
+    public LinkedList<Searchable> search(String term) {
 
-        this.capacity = capacity;
-        this.searchables = new Searchable[capacity];
-
-    }
-
-    public Searchable[] search(String term) {
-
-        int count = 0;
         for (Searchable searchable : searchables) {
             if (searchable == null) continue;
             if (searchable.getSearchTerm().contains(term)) {
-                result[count++] = searchable;
-                if (count == 5) break;
+                result.add(searchable);
             }
         }
         return result;
@@ -30,21 +21,13 @@ public class SearchEngine {
     }
 
     public void printResult() {
-        for (int i = 0; i < result.length; i++) {
-            if (result[i] != null) {
-                System.out.println(result[i]);
-            }
+        for (Searchable results : result) {
+            System.out.println(results);
         }
     }
 
     public void add(Searchable engine) {
-
-        for (int i = 0; i < capacity; i++) {
-            if (searchables[i] == null) {
-                searchables[i] = engine;
-                break;
-            }
-        }
+        searchables.add(engine);
     }
 
     public Searchable foundBestResult(String search) throws BestResultNotFound {

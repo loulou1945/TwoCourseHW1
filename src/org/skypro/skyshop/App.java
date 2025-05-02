@@ -9,7 +9,7 @@ import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.search.BestResultNotFound;
 import org.skypro.skyshop.search.SearchEngine;
 
-import java.util.Arrays;
+import java.util.LinkedList;
 
 
 public class App {
@@ -22,6 +22,7 @@ public class App {
         Product avocado = new SimpleProduct("Avocado", 210);
         Product apricot = new DiscountedProduct("Apricot", 170, 23);
         Product lime = new FixPriceProduct("Lime");
+        Product appleGrannySmith = new DiscountedProduct("Apple: Granny Smith", 210, 10);
 
         //Создание продуктов и обработка IllegalArgumentException
         try {
@@ -47,7 +48,7 @@ public class App {
         Article bananaArticle = new Article("Banana", "С ботанической точки зрения, банан - ягода");
 
         //Создание списка и добавление в него продуктов и статей
-        SearchEngine engine = new SearchEngine(10);
+        SearchEngine engine = new SearchEngine();
 
         engine.add(apple);
         engine.add(banana);
@@ -58,6 +59,7 @@ public class App {
         engine.add(appleArticle1);
         engine.add(bananaArticle);
         engine.add(appleArticle2);
+        engine.add(appleGrannySmith);
 
         //Реализация поика самого подходящего элемента
         System.out.println(engine.foundBestResult("Apple"));
@@ -70,8 +72,8 @@ public class App {
 
         //Реализация метода search
         System.out.println("Реализация интерфесов");
-        Searchable[] result = engine.search("Apple");
-        System.out.println(Arrays.toString(result));
+        LinkedList<Searchable> result = engine.search("Apple");
+        System.out.println(result);
 
         //Реализаия методов Searchable
         System.out.println(bananaArticle.getStringRepresentation());
@@ -81,6 +83,7 @@ public class App {
         System.out.println();
         System.out.println("Реализация корзины");
         ProductBasket firstBasket = new ProductBasket();
+        ProductBasket secondBasket = new ProductBasket();
 
         firstBasket.addProduct(apple);
         firstBasket.addProduct(kiwi);
@@ -96,5 +99,15 @@ public class App {
         firstBasket.printBasket();
         firstBasket.getBasketCost();
         firstBasket.existsProductByName("Apple");
+
+        //Реализация удаления продукта из корзины по имени
+        System.out.println();
+        System.out.println("Вторая корзина");
+        secondBasket.addProduct(apple);
+        secondBasket.printBasket();
+        System.out.println(secondBasket.removeThisProduct("Apple"));
+        secondBasket.printBasket();
+        System.out.println(secondBasket.removeThisProduct("Banana"));
+        secondBasket.printBasket();
     }
 }
