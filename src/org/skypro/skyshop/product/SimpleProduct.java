@@ -31,4 +31,9 @@ public class SimpleProduct extends Product {
 
         return null;
     }
+
+    @Override
+    public String getName() {
+        return getProductName();
+    }
 }
