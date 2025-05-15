@@ -31,5 +31,10 @@ public class Article implements Searchable {
     public String getStringRepresentation() {
         return toString();
     }
+
+    @Override
+    public String getName() {
+        return titleArticle;
+    }
 }
 

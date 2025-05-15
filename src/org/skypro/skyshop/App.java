@@ -10,6 +10,7 @@ import org.skypro.skyshop.search.BestResultNotFound;
 import org.skypro.skyshop.search.SearchEngine;
 
 import java.util.LinkedList;
+import java.util.TreeMap;
 
 
 public class App {
@@ -43,8 +44,8 @@ public class App {
         }
 
         //Список статей
-        Article appleArticle1 = new Article("Apple", "Яблоко не тонет в воде, так как на четверть состоит из воздуха");
-        Article appleArticle2 = new Article("Apple", "Археологи утверждают, что яблоня - первое дерево, культивируемое людьми еще 6500 лет до наступления новой эры");
+        Article appleArticle1 = new Article("Apple1", "Яблоко не тонет в воде, так как на четверть состоит из воздуха");
+        Article appleArticle2 = new Article("Apple2", "Археологи утверждают, что яблоня - первое дерево, культивируемое людьми еще 6500 лет до наступления новой эры");
         Article bananaArticle = new Article("Banana", "С ботанической точки зрения, банан - ягода");
 
         //Создание списка и добавление в него продуктов и статей
@@ -62,6 +63,7 @@ public class App {
         engine.add(appleGrannySmith);
 
         //Реализация поика самого подходящего элемента
+        System.out.println("Реализация поика самого подходящего элемента");
         System.out.println(engine.foundBestResult("Apple"));
         try {
             System.out.println(engine.foundBestResult("Tomato"));
@@ -72,7 +74,7 @@ public class App {
 
         //Реализация метода search
         System.out.println("Реализация интерфесов");
-        LinkedList<Searchable> result = engine.search("Apple");
+        TreeMap<String, Searchable> result = engine.search("Apple");
         System.out.println(result);
 
         //Реализаия методов Searchable

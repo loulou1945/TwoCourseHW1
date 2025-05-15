@@ -3,31 +3,30 @@ package org.skypro.skyshop.search;
 import org.skypro.skyshop.Searchable;
 
 import java.util.LinkedList;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class SearchEngine {
     LinkedList<Searchable> searchables = new LinkedList<>();
-    LinkedList<Searchable> result = new LinkedList<>();
-
-    public LinkedList<Searchable> search(String term) {
-
-        for (Searchable searchable : searchables) {
-            if (searchable == null) continue;
-            if (searchable.getSearchTerm().contains(term)) {
-                result.add(searchable);
-            }
-        }
-        return result;
-
-    }
-
-    public void printResult() {
-        for (Searchable results : result) {
-            System.out.println(results);
-        }
-    }
+    TreeMap<String, Searchable> result = new TreeMap<>();
 
     public void add(Searchable engine) {
         searchables.add(engine);
+    }
+
+    public TreeMap<String, Searchable> search(String term) {
+        for (Searchable searchable : searchables){
+            if (searchable.getName().contains(term)){
+                result.putIfAbsent(searchable.getName(), searchable);
+            }
+        }
+        return result;
+    }
+
+    public void printResult() {
+        for (Map.Entry<String, Searchable> entry : result.entrySet()) {
+            System.out.println(entry.getValue().getStringRepresentation());
+        }
     }
 
     public Searchable foundBestResult(String search) throws BestResultNotFound {
