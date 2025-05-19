@@ -10,6 +10,7 @@ import org.skypro.skyshop.search.BestResultNotFound;
 import org.skypro.skyshop.search.SearchEngine;
 
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.TreeMap;
 
 
@@ -74,7 +75,7 @@ public class App {
 
         //Реализация метода search
         System.out.println("Реализация интерфесов");
-        TreeMap<String, Searchable> result = engine.search("Apple");
+        Map<String, Searchable> result = engine.search("Apple");
         System.out.println(result);
 
         //Реализаия методов Searchable

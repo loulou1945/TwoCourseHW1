@@ -8,13 +8,13 @@ import java.util.TreeMap;
 
 public class SearchEngine {
     LinkedList<Searchable> searchables = new LinkedList<>();
-    TreeMap<String, Searchable> result = new TreeMap<>();
+    private final Map<String, Searchable> result = new TreeMap<>();
 
     public void add(Searchable engine) {
         searchables.add(engine);
     }
 
-    public TreeMap<String, Searchable> search(String term) {
+    public Map<String, Searchable> search(String term) {
         for (Searchable searchable : searchables){
             if (searchable.getName().contains(term)){
                 result.putIfAbsent(searchable.getName(), searchable);

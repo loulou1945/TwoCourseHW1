@@ -5,7 +5,7 @@ import org.skypro.skyshop.product.Product;
 import java.util.*;
 
 public class ProductBasket {
-    Map<String, LinkedList<Product>> products = new HashMap<>();
+    Map<String, List<Product>> products = new HashMap<>();
 
     public void addProduct(Product product) {
         products.computeIfAbsent(product.getProductName(), k -> new LinkedList<>()).add(product);
@@ -13,7 +13,7 @@ public class ProductBasket {
 
     public double getBasketCost() {
         double basketCost = 0;
-        for (Map.Entry<String, LinkedList<Product>> product : products.entrySet()) {
+        for (Map.Entry<String, List<Product>> product : products.entrySet()) {
             for (Product p : product.getValue()) {
                 basketCost += p.getPrice();
             }
@@ -25,7 +25,7 @@ public class ProductBasket {
         System.out.println("Корзина:");
         int countProduct = 0;
         int countSpecialProduct = 0;
-        for (Map.Entry<String, LinkedList<Product>> product : products.entrySet()) {
+        for (Map.Entry<String, List<Product>> product : products.entrySet()) {
             countProduct++;
             System.out.println(product.getValue());
             for (Product p : product.getValue()) {
@@ -45,7 +45,7 @@ public class ProductBasket {
 
     public boolean existsProductByName(String productName) {
         boolean result = false;
-        for (Map.Entry<String, LinkedList<Product>> product : products.entrySet()) {
+        for (Map.Entry<String, List<Product>> product : products.entrySet()) {
             for (Product p : product.getValue()) {
                 if (p.getProductName().equals(productName)) {
                     result = true;
@@ -62,21 +62,21 @@ public class ProductBasket {
     }
 
     public LinkedList<Product> removeThisProduct(String name) {
-        LinkedList<Product> removeProducts = new LinkedList<>();
-        Iterator<Map.Entry<String, LinkedList<Product>>> iterator = products.entrySet().iterator();
+        List<Product> removedProducts = new LinkedList<>();
+        Iterator<Map.Entry<String, List<Product>>> iterator = products.entrySet().iterator();
         while (iterator.hasNext()) {
-            Map.Entry<String, LinkedList<Product>> p = iterator.next();
+            Map.Entry<String, List<Product>> p = iterator.next();
             for (Product product : p.getValue()) {
                 Product tempProd = product;
                 if (tempProd.getProductName().equals(name)) {
-                    removeProducts.add(tempProd);
+                    removedProducts.add(tempProd);
                     iterator.remove();
                 }
             }
         }
-        if (removeProducts.isEmpty()) {
+        if (removedProducts.isEmpty()) {
             System.out.println("Список пуст");
         }
-        return removeProducts;
+        return (LinkedList<Product>) removedProducts;
     }
 }
