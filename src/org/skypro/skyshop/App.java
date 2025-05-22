@@ -12,6 +12,7 @@ import org.skypro.skyshop.search.SearchEngine;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 
 public class App {
@@ -45,8 +46,8 @@ public class App {
         }
 
         //Список статей
-        Article appleArticle1 = new Article("Apple1", "Яблоко не тонет в воде, так как на четверть состоит из воздуха");
-        Article appleArticle2 = new Article("Apple2", "Археологи утверждают, что яблоня - первое дерево, культивируемое людьми еще 6500 лет до наступления новой эры");
+        Article appleArticle1 = new Article("Apple", "Яблоко не тонет в воде, так как на четверть состоит из воздуха");
+        Article appleArticle2 = new Article("Apple", "Археологи утверждают, что яблоня - первое дерево, культивируемое людьми еще 6500 лет до наступления новой эры");
         Article bananaArticle = new Article("Banana", "С ботанической точки зрения, банан - ягода");
 
         //Создание списка и добавление в него продуктов и статей
@@ -75,7 +76,7 @@ public class App {
 
         //Реализация метода search
         System.out.println("Реализация интерфесов");
-        Map<String, Searchable> result = engine.search("Apple");
+        TreeSet<Searchable> result = engine.search("Apple");
         System.out.println(result);
 
         //Реализаия методов Searchable
