@@ -3,22 +3,20 @@ package org.skypro.skyshop.search;
 import org.skypro.skyshop.Searchable;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class SearchEngine {
+
     Set<Searchable> searchables = new HashSet<>();
-    private final Set<Searchable> result = new TreeSet<>(new SearchableComparable());
 
     public void add(Searchable engine) {
         searchables.add(engine);
     }
 
     public TreeSet<Searchable> search(String term) {
-        for (Searchable searchable : searchables){
-            if (searchable.getName().contains(term)){
-                result.add(searchable);
-            }
-        }
-        return (TreeSet<Searchable>) result;
+        return searchables.stream()
+                .filter(i -> i.getName().toLowerCase().contains(term.toLowerCase()))
+                .collect(Collectors.toCollection(() -> new TreeSet<>(new SearchableComparable())));
     }
 
     public static class SearchableComparable implements Comparator<Searchable> {
@@ -29,11 +27,6 @@ public class SearchEngine {
                 return lengthCompare;
             }
             return s2.getName().compareToIgnoreCase(s1.getName());
-        }
-    }
-    public void printResult() {
-        for (Searchable r : result) {
-            System.out.println(result);
         }
     }
 
