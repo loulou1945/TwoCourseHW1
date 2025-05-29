@@ -65,6 +65,7 @@ public class App {
         engine.add(appleGrannySmith);
 
         //Реализация поика самого подходящего элемента
+        System.out.println();
         System.out.println("Реализация поика самого подходящего элемента");
         System.out.println(engine.foundBestResult("Apple"));
         try {
@@ -75,11 +76,14 @@ public class App {
 
 
         //Реализация метода search
+        System.out.println();
         System.out.println("Реализация интерфесов");
         TreeSet<Searchable> result = engine.search("Apple");
         System.out.println(result);
 
         //Реализаия методов Searchable
+        System.out.println();
+        System.out.println("Реализация методов Searchable");
         System.out.println(bananaArticle.getStringRepresentation());
         System.out.println(avocado.getTypeContent());
         System.out.println(avocado.getSearchTerm());
