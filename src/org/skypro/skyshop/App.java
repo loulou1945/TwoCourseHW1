@@ -66,7 +66,7 @@ public class App {
 
         //Реализация поика самого подходящего элемента
         System.out.println();
-        System.out.println("Реализация поика самого подходящего элемента");
+        System.out.println("Реализация поиска самого подходящего элемента");
         System.out.println(engine.foundBestResult("Apple"));
         try {
             System.out.println(engine.foundBestResult("Tomato"));
@@ -111,7 +111,7 @@ public class App {
         //Реализация удаления продукта из корзины по имени
         System.out.println();
         System.out.println("Вторая корзина");
-        secondBasket.addProduct(apple);
+        secondBasket.addProduct(kiwi);
         secondBasket.printBasket();
         System.out.println(secondBasket.removeThisProduct("Apple"));
         secondBasket.printBasket();

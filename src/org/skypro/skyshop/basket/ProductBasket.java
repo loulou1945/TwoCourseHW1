@@ -18,16 +18,18 @@ public class ProductBasket {
         return basketCost;
     }
 
+    private int getCountSpecialProduct() {
+        return Math.toIntExact(products.values().stream().flatMap(Collection::stream).filter(p ->p.isSpecial()).count());
+    }
     public void printBasket() {
         System.out.println("Корзина:");
         int countProduct = Math.toIntExact(products.values().stream().flatMap(Collection::stream).count());
-        int countSpecialProduct = Math.toIntExact(products.values().stream().flatMap(Collection::stream).filter(p -> p.isSpecial()).count());
         if (countProduct == 0) {
             System.out.println("В корзине пусто");
         } else {
             products.values().stream().flatMap(Collection::stream).forEach(p -> System.out.println(p));
             System.out.println("Итого: " + getBasketCost());
-            System.out.println("Специальных товаров: " + countSpecialProduct);
+            System.out.println("Специальных товаров: " + getCountSpecialProduct());
         }
 
     }
