@@ -12,33 +12,24 @@ public class ProductBasket {
     }
 
     public double getBasketCost() {
-        double basketCost = 0;
-        for (Map.Entry<String, List<Product>> product : products.entrySet()) {
-            for (Product p : product.getValue()) {
-                basketCost += p.getPrice();
-            }
-        }
+        double basketCost = products.values().stream().flatMap(Collection::stream)
+                .mapToDouble(Product::getPrice)
+                .sum();
         return basketCost;
     }
 
+    private int getCountSpecialProduct() {
+        return Math.toIntExact(products.values().stream().flatMap(Collection::stream).filter(p ->p.isSpecial()).count());
+    }
     public void printBasket() {
         System.out.println("Корзина:");
-        int countProduct = 0;
-        int countSpecialProduct = 0;
-        for (Map.Entry<String, List<Product>> product : products.entrySet()) {
-            countProduct++;
-            System.out.println(product.getValue());
-            for (Product p : product.getValue()) {
-                if (p.isSpecial()) {
-                    countSpecialProduct++;
-                }
-            }
-        }
+        int countProduct = Math.toIntExact(products.values().stream().flatMap(Collection::stream).count());
         if (countProduct == 0) {
             System.out.println("В корзине пусто");
         } else {
+            products.values().stream().flatMap(Collection::stream).forEach(p -> System.out.println(p));
             System.out.println("Итого: " + getBasketCost());
-            System.out.println("Специальных товаров: " + countSpecialProduct);
+            System.out.println("Специальных товаров: " + getCountSpecialProduct());
         }
 
     }

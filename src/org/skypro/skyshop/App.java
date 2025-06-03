@@ -65,7 +65,8 @@ public class App {
         engine.add(appleGrannySmith);
 
         //Реализация поика самого подходящего элемента
-        System.out.println("Реализация поика самого подходящего элемента");
+        System.out.println();
+        System.out.println("Реализация поиска самого подходящего элемента");
         System.out.println(engine.foundBestResult("Apple"));
         try {
             System.out.println(engine.foundBestResult("Tomato"));
@@ -75,11 +76,14 @@ public class App {
 
 
         //Реализация метода search
+        System.out.println();
         System.out.println("Реализация интерфесов");
         TreeSet<Searchable> result = engine.search("Apple");
         System.out.println(result);
 
         //Реализаия методов Searchable
+        System.out.println();
+        System.out.println("Реализация методов Searchable");
         System.out.println(bananaArticle.getStringRepresentation());
         System.out.println(avocado.getTypeContent());
         System.out.println(avocado.getSearchTerm());
@@ -107,7 +111,7 @@ public class App {
         //Реализация удаления продукта из корзины по имени
         System.out.println();
         System.out.println("Вторая корзина");
-        secondBasket.addProduct(apple);
+        secondBasket.addProduct(kiwi);
         secondBasket.printBasket();
         System.out.println(secondBasket.removeThisProduct("Apple"));
         secondBasket.printBasket();
